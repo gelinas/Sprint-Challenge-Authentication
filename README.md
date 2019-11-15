@@ -40,11 +40,21 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] What is the purpose of using _sessions_?
 
+HTTP is stateless, so if the server wants to be able to identify clients and let them persist data across requests, it uses a "session" stored on their database. The client receives an HTTP Cookie, which they locally store, that allows them to access data from their server-stored-session on subsequent requests.
+
 - [ ] What does bcrypt do to help us store passwords in a secure manner.
+
+bcrypt is a one-way hashing algorithm. when you hash a given string, you will always receive the same resulting "hash" string, but you can't reverse engineer the original data. This is useful for passwords because if hash them before storing, a user's password will not be compromised if the database is compromised.
 
 - [ ] What does bcrypt do to slow down attackers?
 
+Hackers have "rainbow tables" of pre-calculated hashes for all possible character combinations up to a particular length using common hashing techniques. bcyrpt makes this harding by using "salt" (a secret string that is incorporated into the hash) and accumulative hasing rounds (re-hashing the hash several times). Now the hacker needs a lot of additional information (Salt and number of rounds) to be able to match passwords.
+
 - [ ] What are the three parts of the JSON Web Token?
+
+Header (hash algorithm and token type)
+Payload (that data stored, usually including the standard subject, issue date, and expiration date of the token plus any custom properties)
+Signature (although anyone can decode your header and payload, they can't decode your signature without your secret)
 
 ## Minimum Viable Product
 
