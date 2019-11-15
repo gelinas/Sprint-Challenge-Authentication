@@ -13,7 +13,7 @@ function Login(props) {
           .then(res => {
             console.log(res);
             localStorage.setItem('token', res.data.token);
-            props.history.push('/friends');
+            props.history.push('/jokes');
           })
           .catch(err => console.log(err.response));
       };
@@ -33,11 +33,6 @@ function Login(props) {
                     } else if (values.username.length < 2) {
                     errors.username = "Username must be 2 characters at minimum";
                     }
-                    // if (values.email === "") {
-                    // errors.email = "Email is required";
-                    // } else if (!emailTest.test(values.email)) {
-                    // errors.email = "Invalid email address format";
-                    // }
                     if (values.password === "") {
                     errors.password = "Password is required";
                     } else if (values.password.length < 3) {
@@ -46,8 +41,7 @@ function Login(props) {
                     return errors;
                 }}
                 onSubmit={(values, actions) => {
-                    alert("Form is validated! Submitting the form...");
-                    console.log("credentials from object", { username: values.username, password: values.password });
+                    // console.log("credentials from object", { username: values.username, password: values.password });
                     login({ username: values.username, password: values.password });
                     actions.setSubmitting(false);
                 }}
