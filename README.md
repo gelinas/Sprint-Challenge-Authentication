@@ -40,19 +40,29 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] What is the purpose of using _sessions_?
 
+HTTP is stateless, so if the server wants to be able to identify clients and let them persist data across requests, it uses a "session" stored on their database. The client receives an HTTP Cookie, which they locally store, that allows them to access data from their server-stored-session on subsequent requests.
+
 - [ ] What does bcrypt do to help us store passwords in a secure manner.
+
+bcrypt is a one-way hashing algorithm. when you hash a given string, you will always receive the same resulting "hash" string, but you can't reverse engineer the original data. This is useful for passwords because if hash them before storing, a user's password will not be compromised if the database is compromised.
 
 - [ ] What does bcrypt do to slow down attackers?
 
+Hackers have "rainbow tables" of pre-calculated hashes for all possible character combinations up to a particular length using common hashing techniques. bcyrpt makes this harding by using "salt" (a secret string that is incorporated into the hash) and accumulative hasing rounds (re-hashing the hash several times). Now the hacker needs a lot of additional information (Salt and number of rounds) to be able to match passwords.
+
 - [ ] What are the three parts of the JSON Web Token?
+
+Header (hash algorithm and token type)
+Payload (that data stored, usually including the standard subject, issue date, and expiration date of the token plus any custom properties)
+Signature (although anyone can decode your header and payload, they can't decode your signature without your secret)
 
 ## Minimum Viable Product
 
 Implement an User Authentication System. Hash user's passwords before saving them to the database. Use `JSON Web Tokens` or `Sessions and Cookies` to persist authentication across requests.
 
-- [ ] Implement the `register` and `login` functionality inside `/auth/auth-router.js`. A `user` has `username` and `password`. Both properties are required.
-- [ ] Implement the `authenticate` middleware inside `/auth/authenticate-middleware.js`.
-- [ ] Write a **minimum o 2 tests** per API endpoint. Write more tests if you have time.
+- [X] Implement the `register` and `login` functionality inside `/auth/auth-router.js`. A `user` has `username` and `password`. Both properties are required.
+- [X] Implement the `authenticate` middleware inside `/auth/authenticate-middleware.js`.
+- [X] Write a **minimum o 2 tests** per API endpoint. Write more tests if you have time.
 
 **Note**: the database already has the users table, but if you run into issues, the migrations are available.
 
@@ -60,5 +70,5 @@ Implement an User Authentication System. Hash user's passwords before saving the
 
 Build a front end to show the jokes.
 
-- [ ] Add a React client that connects to the API and has pages for `Sign Up`, `Sign In` and showing a list of `Jokes`.
-- [ ] Once you have the functionality down, style it!
+- [X] Add a React client that connects to the API and has pages for `Sign Up`, `Sign In` and showing a list of `Jokes`.
+- [X] Once you have the functionality down, style it!
